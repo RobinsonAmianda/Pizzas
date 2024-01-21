@@ -1,14 +1,19 @@
-import React from 'react'
+import React,  { useState, useEffect } from 'react'
 
 function Restaurant_pizzas() {
-  return (
-    <div> 
-        <h2>BEST PIZZA RESTAURANTS</h2>
-        <ol>1.Villa Rosa_Kempinski</ol>
-        <ol>2.Kay Restaurant chill</ol>
-        <ol>3.Nairobi Street Kitchen</ol>
-    </div>
-  )
-}
+    const [restaurant_pizzas, setRestaurant_pizzas] = useState([]);
+    
+    useEffect(() => {
+      fetch('http://127.0.0.1:5000/restaurant_pizzas')
+      .then((res) => res.json())
+      .then((data) =>console.log(data))
+    }, []);
+  
+    return (
+      <div> 
+         {restaurant_pizzas} 
+      </div>
+    )
+  }
 
 export default Restaurant_pizzas

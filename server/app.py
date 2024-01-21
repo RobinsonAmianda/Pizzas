@@ -1,9 +1,11 @@
 from flask import Flask,request,jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///restaurant.db'
 db = SQLAlchemy(app)
+CORS(app)
 
 class Restaurant(db.Model):
     __tablename__ = 'restaurants' 
@@ -106,5 +108,11 @@ def add_new_pizzas():
 @app.route('/restaurant_pizzas',methods = ['GET'])
 def get_restaurant_pizzas():
     restaurant_pizzas = RestaurantPizza.query.all()
-    restaurant_pizzas_info = [{'price':restaurant_pizzas.price,'pizza_id':restaurant_pizzas.pizza_id,'restaurant_id':restaurant_pizzas.restaurant_id}for restaurant_pizzas in restaurant_pizzas]
+    restaurant_pizzas_info = [
+                                {
+                               'price':restaurant_pizzas.price,
+                               'pizza_id':restaurant_pizzas.pizza_id,
+                               'restaurant_id':restaurant_pizzas.restaurant_id
+                               }
+                               for restaurant_pizzas in restaurant_pizzas]
     return jsonify (restaurant_pizzas_info)
