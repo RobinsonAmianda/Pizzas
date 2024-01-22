@@ -1,17 +1,23 @@
 import React,  { useState, useEffect } from 'react'
 
 function Pizza() {
-    const [pizzas, setPizzas] = useState([]);
+    const [data, setData] = useState([]);
     
   useEffect(() => {
     fetch('http://127.0.0.1:5000/pizzas')
     .then((res) => res.json())
-    .then((data) =>console.log(data))
+    .then((data) =>setData(data))
   }, []);
 
   return (
     <div> 
-       {pizzas} 
+       {data.map(pizzas=>(
+        <div>
+          <h3>Name:${pizzas.name}</h3>
+          <h3>Ingredients:{pizzas.Ingredients}</h3>
+          
+        </div>
+       ))} 
     </div>
   )
 }

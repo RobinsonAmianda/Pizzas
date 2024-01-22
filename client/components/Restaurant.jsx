@@ -1,7 +1,7 @@
 import React,  { useState, useEffect } from 'react'
 
 function Restaurant() {
-   const [restaurants, setRestaurants] = useState([]);
+   const [data, setData] = useState([]);
     
   useEffect(() => {
     fetch('http://127.0.0.1:5000/restaurants')
@@ -11,7 +11,13 @@ function Restaurant() {
 
   return (
     <div> 
-       {restaurants} 
+       {data.map(restaurants=>(
+        <div>
+          <h3>Name:${restaurants.name}</h3>
+          <h3>Address:{restaurants.address}</h3>
+          
+        </div>
+       ))} 
     </div>
   )
 }

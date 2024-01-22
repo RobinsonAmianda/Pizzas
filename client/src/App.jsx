@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-     <h1>Open console to view.....</h1>
+     <h1>Restaurant Cafe</h1>
     </>
   )
 }
